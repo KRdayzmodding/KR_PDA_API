@@ -1,0 +1,52 @@
+info:
+  name: Create Message
+  type: http
+  seq: 4
+  tags:
+    - messages
+    - crud
+
+http:
+  method: POST
+  url: http://localhost:9090/messages
+  body:
+    type: json
+    data: |-
+      {
+        "channel": "global",
+        "sender": "survivor-01",
+        "text": "Hello from Bruno"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        // Сохраняем id созданного сообщения для последующих запросов (get/update/delete)
+        if (res.body && res.body.id !== undefined) {
+          bru.setVar("messageId", res.body.id);
+        }
+    - type: tests
+      code: |-
+        test("статус 201 Created", function() {
+          expect(res.status).to.equal(201);
+        });
+
+        test("в ответе есть id", function() {
+          expect(res.body.id).to.exist;
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  # Create Message
+
+  Создаёт новое сообщение и сохраняет его `id` в переменную `messageId`
+  (через after-response скрипт). Эта переменная используется в запросах
+  Get / Update / Delete, поэтому при прогоне всей коллекции этот запрос
+  должен выполняться раньше них (seq 4).
