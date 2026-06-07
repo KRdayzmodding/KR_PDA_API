@@ -1,0 +1,21 @@
+info:
+  name: Remove Contact
+  type: http
+  seq: 4
+  tags:
+    - contacts
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/v1/contacts/{{contact_id}}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  DELETE /v1/contacts/{id} — удалить контакт (Bearer). id = contact_id.
+

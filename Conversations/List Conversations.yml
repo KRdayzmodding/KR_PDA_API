@@ -1,0 +1,21 @@
+info:
+  name: List Conversations
+  type: http
+  seq: 1
+  tags:
+    - conversations
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/conversations"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  GET /v1/conversations — мои чаты (Bearer).
+

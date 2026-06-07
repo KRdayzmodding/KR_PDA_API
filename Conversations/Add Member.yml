@@ -1,0 +1,29 @@
+info:
+  name: Add Member
+  type: http
+  seq: 7
+  tags:
+    - conversations
+    - members
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/conversations/{{conv}}/members"
+  body:
+    type: json
+    data: |-
+      {
+        "user_id": "{{user}}",
+        "role": "member"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  POST /v1/conversations/{conv}/members — добавить (Bearer). Право: owner/admin.
+

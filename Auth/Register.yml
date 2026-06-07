@@ -1,0 +1,43 @@
+info:
+  name: Register
+  type: http
+  seq: 1
+  tags:
+    - auth
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/accounts"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "Alice",
+        "password": "hunter2pw",
+        "device_uid": "{{device_uid}}",
+        "server_id": "{{server_id}}"
+      }
+  auth: none
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.status === 200 || res.status === 201) {
+          if (res.body && res.body.session_token) {
+            bru.setEnvVar("token", res.body.session_token);
+            bru.setEnvVar("account_id", res.body.account_id);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  POST /v1/accounts — регистрация (публичная). username: RU/EN/цифры/_/-/пробел, 3–32.
+  201 → {account_id, session_token}. 409 если занят. 400 на валидацию.
+  Пост-скрипт сохраняет token+account_id в окружение.
+

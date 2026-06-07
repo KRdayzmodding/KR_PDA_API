@@ -1,0 +1,27 @@
+info:
+  name: Set Alias
+  type: http
+  seq: 3
+  tags:
+    - contacts
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/v1/contacts/{{contact_id}}"
+  body:
+    type: json
+    data: |-
+      {
+        "alias": "Новый алиас"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  PATCH /v1/contacts/{id} — сменить подпись (Bearer). id = contact_id.
+

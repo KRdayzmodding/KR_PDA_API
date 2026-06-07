@@ -1,0 +1,21 @@
+info:
+  name: Logout
+  type: http
+  seq: 4
+  tags:
+    - auth
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/auth/logout"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  POST /v1/auth/logout — логаут устройства (Bearer): удаляет device, токен умирает.
+

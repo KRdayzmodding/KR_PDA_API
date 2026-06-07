@@ -1,0 +1,32 @@
+info:
+  name: Refresh Token
+  type: http
+  seq: 3
+  tags:
+    - auth
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/auth/refresh"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.status === 200 || res.status === 201) {
+          if (res.body && res.body.session_token) {
+            bru.setEnvVar("token", res.body.session_token);
+            bru.setEnvVar("account_id", res.body.account_id);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  POST /v1/auth/refresh — ротация токена (Bearer).
+

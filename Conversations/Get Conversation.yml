@@ -1,0 +1,21 @@
+info:
+  name: Get Conversation
+  type: http
+  seq: 3
+  tags:
+    - conversations
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/conversations/{{conv}}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  GET /v1/conversations/{conv} — детали + участники (Bearer). Доступ: членство.
+

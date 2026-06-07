@@ -1,0 +1,22 @@
+info:
+  name: Inbox (long-poll)
+  type: http
+  seq: 9
+  tags:
+    - conversations
+    - inbox
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/inbox?wait=25"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  GET /v1/inbox?wait=25&since= — long-poll входящих (Bearer).
+

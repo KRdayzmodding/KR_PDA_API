@@ -1,0 +1,38 @@
+info:
+  name: Create Conversation
+  type: http
+  seq: 2
+  tags:
+    - conversations
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/conversations"
+  body:
+    type: json
+    data: |-
+      {
+        "type": "direct",
+        "title": "",
+        "members": ["{{user}}"]
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.status === 201 && res.body && res.body._id) {
+          bru.setEnvVar("conv", res.body._id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  POST /v1/conversations — создать переписку (Bearer). type: direct|group; members — account_id.
+  Пост-скрипт кладёт id в {{conv}}.
+

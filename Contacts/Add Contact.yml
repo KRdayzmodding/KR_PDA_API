@@ -1,0 +1,28 @@
+info:
+  name: Add Contact
+  type: http
+  seq: 2
+  tags:
+    - contacts
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/contacts"
+  body:
+    type: json
+    data: |-
+      {
+        "contact_id": "{{user}}",
+        "alias": "Друг"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  POST /v1/contacts — добавить контакт (Bearer). Дубль → 409.
+

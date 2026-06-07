@@ -1,0 +1,21 @@
+info:
+  name: Health
+  type: http
+  seq: 1
+  tags:
+    - system
+
+http:
+  method: GET
+  url: "{{baseUrl}}/healthz"
+  auth: none
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  GET /healthz — живость шарда (публично). 200 {status, shard}.
+

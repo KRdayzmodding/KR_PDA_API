@@ -1,0 +1,23 @@
+info:
+  name: History
+  type: http
+  seq: 4
+  tags:
+    - conversations
+    - messages
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/conversations/{{conv}}/messages?limit=50"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  GET /v1/conversations/{conv}/messages?limit=&before_seq= — история (Bearer).
+  before_seq — пагинация (seq < before_seq), сортировка seq:-1.
+

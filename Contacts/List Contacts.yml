@@ -1,0 +1,21 @@
+info:
+  name: List Contacts
+  type: http
+  seq: 1
+  tags:
+    - contacts
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/contacts"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  GET /v1/contacts — адресная книга (Bearer).
+

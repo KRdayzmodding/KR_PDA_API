@@ -1,0 +1,21 @@
+info:
+  name: List Devices
+  type: http
+  seq: 1
+  tags:
+    - devices
+
+http:
+  method: GET
+  url: "{{baseUrl}}/v1/devices"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  GET /v1/devices — «мои устройства» (Bearer).
+

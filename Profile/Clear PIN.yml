@@ -1,0 +1,21 @@
+info:
+  name: Clear PIN
+  type: http
+  seq: 2
+  tags:
+    - profile
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/v1/profile/pin"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  DELETE /v1/profile/pin — снять PIN (Bearer).
+

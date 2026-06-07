@@ -1,0 +1,27 @@
+info:
+  name: Mark Read
+  type: http
+  seq: 6
+  tags:
+    - conversations
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/conversations/{{conv}}/read"
+  body:
+    type: json
+    data: |-
+      {
+        "seq": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  POST /v1/conversations/{conv}/read — прочитано до seq (Bearer). $max.
+

@@ -1,0 +1,22 @@
+info:
+  name: Remove Member
+  type: http
+  seq: 8
+  tags:
+    - conversations
+    - members
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/v1/conversations/{{conv}}/members/{{user}}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  DELETE /v1/conversations/{conv}/members/{user} — выйти/исключить (Bearer).
+

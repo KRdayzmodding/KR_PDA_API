@@ -1,0 +1,21 @@
+info:
+  name: Revoke Device
+  type: http
+  seq: 2
+  tags:
+    - devices
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/v1/devices/{{device_uid}}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  DELETE /v1/devices/{id} — remote logout (Bearer). id = device_uid (base64).
+

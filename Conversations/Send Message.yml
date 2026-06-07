@@ -1,0 +1,35 @@
+info:
+  name: Send Message
+  type: http
+  seq: 5
+  tags:
+    - conversations
+    - messages
+
+http:
+  method: POST
+  url: "{{baseUrl}}/v1/conversations/{{conv}}/messages"
+  body:
+    type: json
+    data: |-
+      {
+        "body": "Привет!"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: pre-request
+      code: |-
+        req.setHeader("Idempotency-Key", String(Date.now()));
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  POST /v1/conversations/{conv}/messages — отправка (Bearer). ОБЯЗАТЕЛЕН Idempotency-Key —
+  пре-скрипт ставит его автоматически.
+

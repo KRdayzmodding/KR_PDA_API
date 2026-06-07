@@ -2,6 +2,26 @@ opencollection: 1.0.0
 
 info:
   name: KR_PDA
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  variables:
+    - name: server_id
+      value: "1"
+    - name: device_uid
+      value: xnprb+GhQZKjdZh77M2NsA==
+    - name: baseUrl
+      value: http://localhost:9090
 bundled: false
 extensions:
   bruno:
